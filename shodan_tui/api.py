@@ -16,7 +16,7 @@ class ShodanAPIError(Exception):
 
 class ShodanAPI:
     BASE_URL = "https://api.shodan.io"
-    EXPLOITS_URL = "https://exploits.shodan.io/api"
+    CVEDB_URL = "https://cvedb.shodan.io"
 
     def __init__(self, api_key: str) -> None:
         self.api_key = api_key
@@ -38,7 +38,11 @@ class ShodanAPI:
 
     async def _get(self, path: str, params: dict[str, Any] | None = None, base_url: str | None = None) -> Any:
         url = (base_url or self.BASE_URL) + path
-        params = {**(params or {}), "key": self.api_key}
+        # Only attach the API key for the main Shodan API, not for CVEDB or other external APIs
+        if base_url is None:
+            params = {**(params or {}), "key": self.api_key}
+        else:
+            params = dict(params or {})
         # Remove None values
         params = {k: v for k, v in params.items() if v is not None}
         try:
@@ -50,7 +54,12 @@ class ShodanAPI:
                 except Exception:
                     err_msg = f"HTTP {response.status_code}"
                 raise ShodanAPIError(err_msg)
-            return response.json()
+            if not response.content:
+                raise ShodanAPIError("Empty response — this endpoint may not be available on your plan.")
+            try:
+                return response.json()
+            except ValueError:
+                raise ShodanAPIError(f"Unexpected response (not JSON): {response.text[:120]}")
         except ShodanAPIError:
             raise
         except httpx.TimeoutException:
@@ -207,15 +216,29 @@ class ShodanAPI:
         """Delete a network monitoring alert."""
         return await self._delete(f"/shodan/alert/{alert_id}")
 
-    # ── Exploits ──────────────────────────────────────────────────────────────
+    # ── CVEDB ─────────────────────────────────────────────────────────────────
+
+    async def get_cve(self, cve_id: str) -> dict:
+        """Look up a single CVE by ID from cvedb.shodan.io."""
+        return await self._get(f"/cve/{cve_id.upper()}", base_url=self.CVEDB_URL)
+
+    async def search_cves_by_product(self, product: str) -> dict:
+        """Find CVEs by product name via /cves?product=..."""
+        data = await self._get(
+            "/cves",
+            {"product": product, "sort_by_epss": "true", "limit": 100},
+            base_url=self.CVEDB_URL,
+        )
+        matches = data if isinstance(data, list) else data.get("cves", [])
+        return {"matches": matches, "total": len(matches)}
 
     async def search_exploits(self, query: str, page: int = 1) -> dict:
-        """Search the Shodan Exploits database."""
-        return await self._get(
-            "/search",
-            {"query": query, "page": page},
-            base_url=self.EXPLOITS_URL,
-        )
+        """Search CVEDB. CVE IDs do a direct lookup; anything else searches by product."""
+        q = query.strip()
+        if q.upper().startswith("CVE-"):
+            data = await self.get_cve(q)
+            return {"matches": [data], "total": 1}
+        return await self.search_cves_by_product(q)
 
     # ── Account ───────────────────────────────────────────────────────────────
 

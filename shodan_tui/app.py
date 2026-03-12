@@ -6,7 +6,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from textual import work
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.widgets import Footer, Header, Static, TabbedContent, TabPane
@@ -101,7 +100,6 @@ class ShodanTUI(App):
         self.config = config
         self.api = ShodanAPI(config.api_key)
         self.storage = WorkspaceStorage(config)
-        self._credits_text: str = ""  # updated by startup worker and Account pane
 
     # ── Composition ───────────────────────────────────────────────────────────
 
@@ -128,22 +126,7 @@ class ShodanTUI(App):
             with TabPane("💥 Exploits",   id="tab-exploits"):
                 yield ExploitsPane(id="exploits-pane")
 
-        yield Static("⏳ loading credits…", id="status-credits", classes="status-bar-extra")
         yield Footer()
-
-    # ── Search → Results handoff ──────────────────────────────────────────────
-
-    def on_search_pane_search_completed(self, event: SearchPane.SearchCompleted) -> None:
-        """Show credits + last-query summary in the status bar after a search."""
-        try:
-            query_part = (
-                f"[dim]{event.query[:35]}[/dim]  ·  "
-                f"[green]{event.data.get('total', 0):,}[/green] results"
-            )
-            text = f"{self._credits_text}   {query_part}" if self._credits_text else query_part
-            self.query_one("#status-credits", Static).update(text)
-        except Exception:
-            pass
 
     # ── Screen routing ────────────────────────────────────────────────────────
 
@@ -186,23 +169,6 @@ class ShodanTUI(App):
         self.push_screen(_HelpModal())
 
     # ── Lifecycle ─────────────────────────────────────────────────────────────
-
-    def on_mount(self) -> None:
-        """Fetch API plan info on startup to populate the credits status bar."""
-        self._fetch_startup_credits()
-
-    @work
-    async def _fetch_startup_credits(self) -> None:
-        """Pull query/scan credit counts and display them in the status bar."""
-        try:
-            info = await self.api.get_api_info()
-            qc = info.get("query_credits", 0)
-            sc = info.get("scan_credits", 0)
-            self._credits_text = f"Credits: [cyan]{qc}[/cyan] query / [cyan]{sc}[/cyan] scan"
-            self.query_one("#status-credits", Static).update(self._credits_text)
-        except Exception:
-            self._credits_text = ""
-            self.query_one("#status-credits", Static).update("")
 
     async def on_unmount(self) -> None:
         await self.api.close()

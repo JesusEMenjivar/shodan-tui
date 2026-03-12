@@ -39,17 +39,6 @@ TabPane {
     height: 1fr;
 }
 
-/* ─── Status bar extra ────────────────────────────────────────────────────── */
-
-.status-bar-extra {
-    dock: bottom;
-    height: 1;
-    background: #111111;
-    color: $text-dim;
-    padding: 0 2;
-    content-align: right middle;
-}
-
 /* ─── Section labels ──────────────────────────────────────────────────────── */
 
 .section-label {
@@ -81,6 +70,10 @@ Input:focus {
     height: auto;
     margin-bottom: 1;
     align: left middle;
+}
+
+.input-row Input {
+    width: 1fr;
 }
 
 .filter-label {
@@ -197,19 +190,20 @@ SearchPane {
 }
 
 #search-top {
-    height: auto;
+    height: 1fr;
     margin-bottom: 1;
 }
 
 #search-left {
     width: 2fr;
     padding-right: 2;
-    height: auto;
+    height: 1fr;
+    overflow-y: auto;
 }
 
 #search-right {
     width: 1fr;
-    height: auto;
+    height: 1fr;
 }
 
 #filter-grid {
@@ -384,8 +378,20 @@ HostDetailScreen {
 
 /* ─── DNS pane ────────────────────────────────────────────────────────────── */
 
+DNSPane {
+    height: 1fr;
+}
+
 #dns-tabs {
     height: 1fr;
+}
+
+#resolve-table,
+#reverse-table,
+#domain-table,
+#org-table {
+    height: 1fr;
+    min-height: 5;
 }
 
 .dns-export-row {
@@ -399,7 +405,12 @@ HostDetailScreen {
 
 /* ─── Alerts pane ─────────────────────────────────────────────────────────── */
 
+AlertsPane {
+    height: 1fr;
+}
+
 #create-alert-form {
+    height: auto;
     background: $bg-panel;
     padding: 1;
     border: tall $bg-raised;
@@ -411,6 +422,11 @@ HostDetailScreen {
     margin-top: 1;
 }
 
+#alerts-table {
+    height: 1fr;
+    min-height: 5;
+}
+
 #alerts-actions {
     height: auto;
     margin-top: 1;
@@ -418,7 +434,12 @@ HostDetailScreen {
 
 /* ─── Scans pane ──────────────────────────────────────────────────────────── */
 
+ScansPane {
+    height: 1fr;
+}
+
 #scan-form {
+    height: auto;
     background: $bg-panel;
     padding: 1;
     border: tall $bg-raised;
@@ -428,6 +449,11 @@ HostDetailScreen {
 #scan-buttons {
     height: auto;
     margin-top: 1;
+}
+
+#scans-table {
+    height: 1fr;
+    min-height: 5;
 }
 
 #scans-actions {
@@ -440,6 +466,8 @@ HostDetailScreen {
     border: tall $bg-raised;
     padding: 1 2;
     margin-top: 1;
+    height: 10;
+    overflow-y: auto;
 }
 
 #scan-detail.hidden {
@@ -456,6 +484,10 @@ HostDetailScreen {
 }
 
 /* ─── Scripts pane ────────────────────────────────────────────────────────── */
+
+ScriptsPane {
+    height: 1fr;
+}
 
 #scripts-layout {
     height: 1fr;
@@ -497,6 +529,7 @@ HostDetailScreen {
 }
 
 #add-script-form {
+    height: auto;
     background: $bg-panel;
     border: tall $accent;
     padding: 1 2;
@@ -549,6 +582,10 @@ HostDetailScreen {
 
 /* ─── Workspace pane ──────────────────────────────────────────────────────── */
 
+WorkspacePane {
+    height: 1fr;
+}
+
 #workspace-layout {
     height: 1fr;
 }
@@ -562,6 +599,7 @@ HostDetailScreen {
 #workspace-detail-panel {
     width: 50%;
     padding-left: 2;
+    overflow-y: auto;
 }
 
 #workspace-detail-panel .filter-label {
@@ -601,17 +639,23 @@ HostDetailScreen {
 
 /* ─── Account pane ────────────────────────────────────────────────────────── */
 
+AccountPane {
+    height: 1fr;
+}
+
 #account-layout {
     height: auto;
 }
 
 #account-left {
     width: 1fr;
+    height: auto;
     padding-right: 2;
 }
 
 #account-right {
     width: 1fr;
+    height: auto;
 }
 
 #account-actions {
@@ -638,6 +682,10 @@ _HelpModal {
 }
 
 /* ─── Exploits pane ───────────────────────────────────────────────────────── */
+
+ExploitsPane {
+    height: 1fr;
+}
 
 #exploit-search-row {
     height: auto;
@@ -671,6 +719,8 @@ _HelpModal {
     border: tall $bg-raised;
     padding: 1 2;
     margin-top: 1;
+    height: 14;
+    overflow-y: auto;
 }
 
 #exploit-detail.hidden {

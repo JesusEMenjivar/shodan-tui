@@ -125,14 +125,6 @@ class AccountPane(Container):
                 f"[dim]1 credit consumed per IP scanned on-demand.[/dim]"
             )
 
-            # Update app status bar credits and keep _credits_text in sync
-            try:
-                credits_str = f"Credits: [cyan]{qc}[/cyan] query / [cyan]{sc}[/cyan] scan"
-                self.app._credits_text = credits_str  # type: ignore[attr-defined]
-                self.app.query_one("#status-credits", Static).update(credits_str)  # type: ignore[attr-defined]
-            except Exception:
-                pass
-
         # ── Profile ───────────────────────────────────────────────────────────
         if "error" in profile:
             profile_panel.update(f"[red]{profile['error']}[/red]")

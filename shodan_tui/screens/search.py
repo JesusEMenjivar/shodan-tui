@@ -209,7 +209,6 @@ class SearchPane(Container):
         self.app.query_one("#main-tabs", TabbedContent).active = "tab-results"  # type: ignore
         self.app.query_one("#results-table").focus()  # type: ignore
 
-        # Still post the message so app.py can update the status bar.
         self.post_message(self.SearchCompleted(self._current_query, data, self._page))
 
     def action_run_search(self) -> None:
