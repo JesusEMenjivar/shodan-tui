@@ -1,0 +1,716 @@
+/* ─── Global ──────────────────────────────────────────────────────────────── */
+
+$bg:         #0e0e0e;
+$bg-panel:   #181818;
+$bg-raised:  #222222;
+$accent:     #00e5ff;
+$accent-dim: #0097a7;
+$green:      #00e676;
+$yellow:     #ffd740;
+$red:        #ff5252;
+$muted:      #555555;
+$text:       #e0e0e0;
+$text-dim:   #888888;
+
+App {
+    background: $bg;
+    color: $text;
+}
+
+Header {
+    background: #111111;
+    color: $accent;
+    text-style: bold;
+}
+
+Footer {
+    background: #111111;
+    color: $text-dim;
+}
+
+TabbedContent {
+    background: $bg;
+    height: 1fr;
+}
+
+TabPane {
+    background: $bg;
+    padding: 1 2;
+    height: 1fr;
+}
+
+/* ─── Status bar extra ────────────────────────────────────────────────────── */
+
+.status-bar-extra {
+    dock: bottom;
+    height: 1;
+    background: #111111;
+    color: $text-dim;
+    padding: 0 2;
+    content-align: right middle;
+}
+
+/* ─── Section labels ──────────────────────────────────────────────────────── */
+
+.section-label {
+    color: $accent;
+    text-style: bold;
+    margin-top: 1;
+    margin-bottom: 0;
+    padding: 0 0;
+}
+
+.help-text {
+    color: $text-dim;
+    margin-bottom: 1;
+}
+
+/* ─── Inputs & forms ──────────────────────────────────────────────────────── */
+
+Input {
+    background: $bg-raised;
+    border: tall $muted;
+    color: $text;
+}
+
+Input:focus {
+    border: tall $accent;
+}
+
+.input-row {
+    height: auto;
+    margin-bottom: 1;
+    align: left middle;
+}
+
+.filter-label {
+    color: $text-dim;
+    width: 16;
+    content-align: right middle;
+    padding-right: 1;
+}
+
+.filter-input {
+    width: 20;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+
+Button {
+    margin: 0 1 0 0;
+}
+
+Button.--primary {
+    background: $accent-dim;
+    color: #000000;
+    text-style: bold;
+}
+
+Button.--primary:hover {
+    background: $accent;
+}
+
+Button.--error {
+    background: #b71c1c;
+    color: $text;
+}
+
+/* ─── DataTable ───────────────────────────────────────────────────────────── */
+
+DataTable {
+    background: $bg-panel;
+    border: tall $bg-raised;
+    margin-top: 1;
+}
+
+DataTable > .datatable--header {
+    background: $bg-raised;
+    color: $accent;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: $accent-dim;
+    color: #000000;
+}
+
+DataTable > .datatable--even-row {
+    background: $bg-panel;
+}
+
+DataTable > .datatable--odd-row {
+    background: #161616;
+}
+
+/* ─── ListView ────────────────────────────────────────────────────────────── */
+
+ListView {
+    background: $bg-panel;
+    border: tall $bg-raised;
+    height: 1fr;
+    min-height: 4;
+}
+
+/* history/saved lists share the right panel height equally */
+#history-list {
+    height: 1fr;
+}
+
+#history-header {
+    height: auto;
+    margin-top: 1;
+    align: left middle;
+}
+
+#history-header .section-label {
+    width: 1fr;
+    margin-top: 0;
+}
+
+#btn-clear-history {
+    width: auto;
+    min-width: 5;
+    margin: 0;
+}
+
+#saved-list {
+    height: 1fr;
+}
+
+ListItem {
+    padding: 0 1;
+}
+
+ListItem:hover {
+    background: $bg-raised;
+}
+
+ListItem.--highlight {
+    background: $accent-dim;
+    color: #000000;
+}
+
+/* ─── Search screen ───────────────────────────────────────────────────────── */
+
+SearchPane {
+    height: 1fr;
+}
+
+#search-top {
+    height: auto;
+    margin-bottom: 1;
+}
+
+#search-left {
+    width: 2fr;
+    padding-right: 2;
+    height: auto;
+}
+
+#search-right {
+    width: 1fr;
+    height: auto;
+}
+
+#filter-grid {
+    layout: grid;
+    grid-size: 2;
+    grid-columns: auto 1fr;
+    grid-rows: auto;
+    height: auto;
+}
+
+#filter-collapsible {
+    height: auto;
+    margin-top: 1;
+    border: none;
+    padding: 0;
+}
+
+#filter-collapsible > CollapsibleTitle {
+    color: $accent-dim;
+    background: $bg-raised;
+    padding: 0 1;
+}
+
+#filter-collapsible > CollapsibleTitle:hover {
+    background: $bg-raised;
+    color: $accent;
+}
+
+#search-buttons {
+    margin-top: 1;
+    height: auto;
+}
+
+/* ─── Search status & count result ───────────────────────────────────────── */
+
+#search-status {
+    height: auto;
+    margin-top: 1;
+    color: $text-dim;
+}
+
+#count-result {
+    height: auto;
+    margin-top: 1;
+    background: $bg-panel;
+    border: tall $bg-raised;
+    padding: 1;
+}
+
+#count-result.hidden {
+    display: none;
+}
+
+/* ─── Results tab ─────────────────────────────────────────────────────────── */
+
+ResultsPane {
+    height: 1fr;
+}
+
+#results-outer {
+    height: 1fr;
+}
+
+#results-main {
+    width: 1fr;
+    height: 1fr;
+    padding-right: 1;
+}
+
+#results-header {
+    height: auto;
+    align: left middle;
+    margin-bottom: 0;
+}
+
+#results-meta {
+    width: 1fr;
+    color: $text-dim;
+    content-align: left middle;
+    height: auto;
+}
+
+#results-export-btns {
+    height: auto;
+    align: right middle;
+}
+
+#results-table {
+    height: 1fr;
+    min-height: 5;
+}
+
+#results-nav {
+    height: auto;
+    margin-top: 1;
+    align: left middle;
+}
+
+#results-nav.hidden {
+    display: none;
+}
+
+#page-indicator {
+    color: $text-dim;
+    content-align: center middle;
+    width: 18;
+}
+
+#results-facets {
+    width: 32;
+    height: 1fr;
+    padding-left: 2;
+    border-left: tall $bg-raised;
+}
+
+#results-facets.hidden {
+    display: none;
+}
+
+#facets-content {
+    height: auto;
+    color: $text-dim;
+    margin-top: 1;
+}
+
+/* ─── Host detail modal ───────────────────────────────────────────────────── */
+
+HostDetailScreen {
+    align: center middle;
+}
+
+#host-modal {
+    width: 90%;
+    height: 90%;
+    background: $bg-panel;
+    border: thick $accent;
+    padding: 1 2;
+}
+
+#host-header {
+    height: auto;
+    margin-bottom: 1;
+    align: left middle;
+}
+
+#host-title {
+    color: $accent;
+    text-style: bold;
+    width: 1fr;
+    content-align: left middle;
+}
+
+#host-status {
+    color: $text-dim;
+    height: 1;
+}
+
+#host-body {
+    height: 1fr;
+}
+
+.detail-row-group {
+    height: auto;
+    margin-bottom: 1;
+}
+
+.detail-col {
+    width: 1fr;
+    height: auto;
+    padding-right: 2;
+}
+
+/* ─── DNS pane ────────────────────────────────────────────────────────────── */
+
+#dns-tabs {
+    height: 1fr;
+}
+
+.dns-export-row {
+    height: auto;
+    margin-top: 1;
+}
+
+.dns-export-row.hidden {
+    display: none;
+}
+
+/* ─── Alerts pane ─────────────────────────────────────────────────────────── */
+
+#create-alert-form {
+    background: $bg-panel;
+    padding: 1;
+    border: tall $bg-raised;
+    margin-bottom: 1;
+}
+
+#alert-create-buttons {
+    height: auto;
+    margin-top: 1;
+}
+
+#alerts-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+/* ─── Scans pane ──────────────────────────────────────────────────────────── */
+
+#scan-form {
+    background: $bg-panel;
+    padding: 1;
+    border: tall $bg-raised;
+    margin-bottom: 1;
+}
+
+#scan-buttons {
+    height: auto;
+    margin-top: 1;
+}
+
+#scans-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+#scan-detail {
+    background: $bg-panel;
+    border: tall $bg-raised;
+    padding: 1 2;
+    margin-top: 1;
+}
+
+#scan-detail.hidden {
+    display: none;
+}
+
+#scan-detail-info {
+    color: $text;
+}
+
+#scan-detail-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+/* ─── Scripts pane ────────────────────────────────────────────────────────── */
+
+#scripts-layout {
+    height: 1fr;
+}
+
+#scripts-list-panel {
+    width: 32;
+    padding-right: 2;
+    border-right: tall $bg-raised;
+}
+
+#scripts-detail-panel {
+    width: 1fr;
+    padding-left: 1;
+}
+
+#scripts-list {
+    height: 1fr;
+}
+
+#scripts-list-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+#scripts-list-actions Button {
+    width: 1fr;
+    margin: 0 0 1 0;
+}
+
+#script-run-actions {
+    height: auto;
+    margin-top: 1;
+    margin-bottom: 1;
+}
+
+#script-run-actions.hidden {
+    display: none;
+}
+
+#add-script-form {
+    background: $bg-panel;
+    border: tall $accent;
+    padding: 1 2;
+    margin-top: 1;
+}
+
+#add-script-form.hidden {
+    display: none;
+}
+
+#add-script-buttons {
+    height: auto;
+    margin-top: 1;
+}
+
+#script-output {
+    color: $text-dim;
+    margin-bottom: 1;
+}
+
+#script-results-table {
+    height: 1fr;
+    min-height: 5;
+}
+
+#script-nav {
+    height: auto;
+    margin-top: 1;
+    align: left middle;
+}
+
+#script-nav.hidden {
+    display: none;
+}
+
+#script-page-label {
+    color: $text-dim;
+    content-align: center middle;
+    width: 18;
+}
+
+#script-export-btns {
+    height: auto;
+    margin-top: 1;
+}
+
+#script-export-btns.hidden {
+    display: none;
+}
+
+/* ─── Workspace pane ──────────────────────────────────────────────────────── */
+
+#workspace-layout {
+    height: 1fr;
+}
+
+#workspace-list-panel {
+    width: 50%;
+    padding-right: 2;
+    border-right: tall $bg-raised;
+}
+
+#workspace-detail-panel {
+    width: 50%;
+    padding-left: 2;
+}
+
+#workspace-detail-panel .filter-label {
+    width: 16;
+}
+
+#workspace-table {
+    height: 1fr;
+}
+
+#workspace-list-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+#notes-editor {
+    height: 12;
+    border: tall $muted;
+    background: $bg-raised;
+    margin-bottom: 1;
+}
+
+#notes-editor:focus {
+    border: tall $accent;
+}
+
+#btn-save-notes {
+    width: 100%;
+    margin-top: 1;
+    margin-bottom: 1;
+}
+
+#rescan-panel {
+    color: $text-dim;
+    margin-bottom: 1;
+}
+
+/* ─── Account pane ────────────────────────────────────────────────────────── */
+
+#account-layout {
+    height: auto;
+}
+
+#account-left {
+    width: 1fr;
+    padding-right: 2;
+}
+
+#account-right {
+    width: 1fr;
+}
+
+#account-actions {
+    height: auto;
+    margin-top: 1;
+}
+
+/* ─── Help modal ──────────────────────────────────────────────────────────── */
+
+_HelpModal {
+    align: center middle;
+}
+
+#help-modal {
+    width: 70;
+    height: auto;
+    background: $bg-panel;
+    border: thick $accent;
+    padding: 1 2;
+}
+
+#help-content {
+    margin-bottom: 1;
+}
+
+/* ─── Exploits pane ───────────────────────────────────────────────────────── */
+
+#exploit-search-row {
+    height: auto;
+    margin-bottom: 1;
+    align: left middle;
+}
+
+#exploit-status {
+    height: auto;
+    color: $text-dim;
+    margin-top: 1;
+}
+
+#exploit-table {
+    height: 1fr;
+    min-height: 5;
+}
+
+#exploit-nav {
+    height: auto;
+    margin-top: 1;
+    align: left middle;
+}
+
+#exploit-nav.hidden {
+    display: none;
+}
+
+#exploit-detail {
+    background: $bg-panel;
+    border: tall $bg-raised;
+    padding: 1 2;
+    margin-top: 1;
+}
+
+#exploit-detail.hidden {
+    display: none;
+}
+
+#exploit-detail-content {
+    color: $text;
+}
+
+#exploit-export-btns {
+    height: auto;
+    margin-top: 1;
+}
+
+#exploit-export-btns.hidden {
+    display: none;
+}
+
+#exploit-page-indicator {
+    color: $text-dim;
+    content-align: center middle;
+    width: 18;
+}
+
+/* ─── Rule (divider) ──────────────────────────────────────────────────────── */
+
+Rule {
+    color: $bg-raised;
+    margin: 1 0;
+}
+
+/* ─── ScrollableContainer ─────────────────────────────────────────────────── */
+
+ScrollableContainer {
+    background: transparent;
+}
+
+/* ─── Hidden utility ──────────────────────────────────────────────────────── */
+
+.hidden {
+    display: none;
+}
