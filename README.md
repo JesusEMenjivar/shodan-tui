@@ -11,24 +11,24 @@ A terminal user interface for [Shodan](https://shodan.io) — built for OSINT, r
 | Tab | Key | What it does |
 |-----|-----|-------------|
 | 🔍 **Search** | `1` | Full Shodan query syntax, filter builder, search history, free Count (no credits), paginated results |
-| 📋 **Results** | `2` | Paginated result table with country/org/port facets sidebar, host detail overlay, JSON/CSV export |
-| 🌐 **DNS & Recon** | `3` | Forward/reverse DNS lookup, subdomain enumeration, org footprint mapping |
-| 🔔 **Alerts** | `4` | Create and manage network monitoring alerts for IPs and netblocks |
-| 📡 **Scans** | `5` | Submit and track on-demand scans *(requires paid plan)* |
-| ⚙ **Scripts** | `6` | Run built-in OSINT scripts or install your own |
-| 📁 **Workspace** | `7` | Save targets, write notes, tag by investigation, re-scan saved hosts |
-| 👤 **Account** | `8` | API plan info, query/scan credit usage, public IP display |
-| 💥 **Exploits** | `9` | Search CVEs, Metasploit modules, Exploit-DB entries — no query credits consumed |
+| 📋 **Results** | `2` | Paginated result table with country/org/port facets sidebar, host detail overlay, JSON/CSV export   |
+| 🌐 **DNS & Recon** | `3` | Forward/reverse DNS lookup, subdomain enumeration, org footprint mapping                        |
+| 🔔 **Alerts** | `4` | Create and manage network monitoring alerts for IPs and netblocks                                    |
+| 📡 **Scans** | `5` | Submit and track on-demand scans                                                                      |
+| ⚙ **Scripts** | `6` | Run built-in OSINT scripts or install your own                                                       |
+| 📁 **Workspace** | `7` | Save targets, write notes, tag by investigation, re-scan saved hosts                              |
+| 👤 **Account** | `8` | API plan info, query/scan credit usage, public IP display                                           |
+| 💥 **Exploits** | `9` | Search CVEs, Metasploit modules, Exploit-DB entries                                                |
 
 ### Built-in Scripts
 
 | Script | Description |
 |--------|-------------|
-| **Exposed RDP** | Internet-facing Remote Desktop Protocol servers |
+| **Exposed RDP** | Internet-facing Remote Desktop Protocol servers        |
 | **Exposed Databases** | MongoDB, Elasticsearch, Redis, CouchDB, and more |
-| **Log4Shell Scanner** | Hosts flagged as vulnerable to CVE-2021-44228 |
-| **Open Webcams** | Accessible IP cameras indexed by Shodan |
-| **Expired SSL Certs** | Hosts serving expired TLS certificates |
+| **Log4Shell Scanner** | Hosts flagged as vulnerable to CVE-2021-44228    |
+| **Open Webcams** | Accessible IP cameras indexed by Shodan               |
+| **Expired SSL Certs** | Hosts serving expired TLS certificates           |
 
 ---
 
@@ -36,9 +36,6 @@ A terminal user interface for [Shodan](https://shodan.io) — built for OSINT, r
 
 - Python 3.10 or newer
 - A Shodan API key — [get one free at account.shodan.io](https://account.shodan.io)
-
-> **Free tier** covers: basic search (1 result page/query), host lookup, DNS, exploit search, alerts.
-> **Paid plans** unlock: full result pagination (100 results/page), on-demand scans, org footprint DNS, scan credits.
 
 ---
 
