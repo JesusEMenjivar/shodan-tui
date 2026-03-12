@@ -2,24 +2,7 @@
 
 A terminal user interface for [Shodan](https://shodan.io) — built for OSINT, recon, and network monitoring workflows.
 
-```
- Shodan TUI — OSINT Terminal Interface                           20:24:21
-┌─────────────────────────────────────────────────────────────────────────┐
-│ 🔍 Search  📋 Results  🌐 DNS & Recon  🔔 Alerts  📡 Scans  ⚙ Scripts │
-│ 📁 Workspace  👤 Account  💥 Exploits                                   │
-├─────────────────────────────────────────────────────────────────────────┤
-│  Query ▶  [ apache port:443 country:US                              ]   │
-│                                                                         │
-│  IP               PORT   ORG                 CC    PRODUCT             │
-│  104.21.44.12      443   Cloudflare          🇺🇸   Apache httpd        │
-│  198.41.128.5      443   Verizon Business    🇺🇸   Apache httpd        │
-│  51.89.47.212      443   OVH SAS             🇫🇷   Apache httpd        │
-│  ...                                                                    │
-│                                                                         │
-│  Credits: 95 query / 10 scan   ·   apache port:443 country:US          │
-└─────────────────────────────────────────────────────────────────────────┘
-  ^q Quit  1 Search  2 Results  3 DNS/Recon  4 Alerts  5 Scans  ? Help
-```
+![Shodan TUI interface](assets/shodan-tui-interface.png)
 
 ---
 
